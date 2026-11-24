@@ -1,0 +1,476 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task bloom - Your Personal Planner</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-icon">✿</span>
+            <div>
+                <h2>Task bloom</h2>
+                <small>Your little happy space</small>
+            </div>
+        </div>
+
+        <div class="profile">
+            <div class="avatar">🌷</div>
+            <div>
+                <strong>My Workspace</strong>
+                <small>Make today beautiful</small>
+            </div>
+        </div>
+
+        <p class="nav-heading">MENU</p>
+
+        <nav>
+            <button class="nav-btn active" data-page="dashboard">
+                🏡 Dashboard
+            </button>
+
+            <button class="nav-btn" data-page="planner">
+                📅 My Planner
+            </button>
+
+            <button class="nav-btn" data-page="settings">
+                ⚙️ Settings
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="quote">
+                <span>✨</span>
+                <p>Small steps every day lead to beautiful things.</p>
+            </div>
+            <button id="themeBtn" class="theme-btn">
+                🌙 Dark Mode
+            </button>
+        </div>
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1 id="pageTitle">My Dashboard</h1>
+                <p id="todayDate">Your day, your way ✨</p>
+            </div>
+
+            <div class="top-actions">
+                <button class="icon-btn" id="notificationBtn" title="Enable notifications">
+                    🔔
+                </button>
+                <div class="date-pill" id="headerDate"></div>
+            </div>
+        </header>
+
+
+        <!-- DASHBOARD PAGE -->
+
+        <section class="page active" id="dashboard">
+
+            <div class="welcome-banner">
+                <div>
+                    <span class="eyebrow">YOUR PERSONAL SPACE</span>
+                    <h2>Make today count! ✨</h2>
+                    <p>Little steps make big achievements.</p>
+                </div>
+                <div class="welcome-flower">🌷</div>
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span>📝</span>
+                    <h2 id="totalCount">0</h2>
+                    <p>Total Tasks</p>
+                </div>
+
+                <div class="stat-card">
+                    <span>⏳</span>
+                    <h2 id="pendingCount">0</h2>
+                    <p>Pending</p>
+                </div>
+
+                <div class="stat-card">
+                    <span>🌸</span>
+                    <h2 id="completedCount">0</h2>
+                    <p>Completed</p>
+                </div>
+
+                <div class="stat-card">
+                    <span>⭐</span>
+                    <h2 id="importantCount">0</h2>
+                    <p>Important</p>
+                </div>
+
+            </div>
+
+
+            <div class="content-card">
+                <div class="section-heading">
+                    <div>
+                        <h2>My To-Do Lists</h2>
+                        <p>Organize your life into little lists.</p>
+                    </div>
+                </div>
+
+                <div class="list-create">
+                    <input type="text" id="listName"
+                        placeholder="Enter a new list name...">
+
+                    <button class="primary-btn" id="createListBtn">
+                        + Create List
+                    </button>
+                </div>
+
+                <select id="listSelect" class="full-select">
+                    <option value="My Tasks">My Tasks</option>
+                </select>
+            </div>
+
+
+            <div class="content-card task-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>My Tasks 🌼</h2>
+                        <p>Let's get things done!</p>
+                    </div>
+                    <span class="flower-decoration">🌻</span>
+                </div>
+
+
+                <form id="taskForm">
+
+                    <input type="hidden" id="editId">
+
+                    <div class="form-grid">
+
+                        <div class="field wide">
+                            <label>Task Name *</label>
+                            <input type="text" id="taskTitle"
+                                placeholder="What do you need to do?" required>
+                        </div>
+
+                        <div class="field">
+                            <label>Category</label>
+                            <select id="taskCategory">
+                                <option>Personal</option>
+                                <option>Study</option>
+                                <option>Work</option>
+                                <option>Health</option>
+                                <option>Shopping</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label>Priority</label>
+                            <select id="taskPriority">
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                                <option value="High">High</option>
+                                <option value="Urgent">Urgent</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label>Due Date</label>
+                            <input type="date" id="taskDate">
+                        </div>
+
+                        <div class="field">
+                            <label>Due Time</label>
+                            <input type="time" id="taskTime">
+                        </div>
+
+                        <div class="field">
+                            <label>Reminder</label>
+                            <select id="taskReminder">
+                                <option value="0">At due time</option>
+                                <option value="5">5 minutes before</option>
+                                <option value="10">10 minutes before</option>
+                                <option value="15">15 minutes before</option>
+                                <option value="30">30 minutes before</option>
+                                <option value="60">1 hour before</option>
+                                <option value="1440">1 day before</option>
+                                <option value="-1">No reminder</option>
+                            </select>
+                        </div>
+
+                        <div class="field wide">
+                            <label>Notes</label>
+                            <textarea id="taskNotes"
+                                placeholder="Add some details..."></textarea>
+                        </div>
+
+                    </div>
+
+                    <label class="important-label">
+                        <input type="checkbox" id="taskImportant">
+                        ⭐ Mark as important
+                    </label>
+
+                    <div class="form-buttons">
+                        <button type="submit" class="primary-btn" id="submitTask">
+                            + Add Task
+                        </button>
+
+                        <button type="button" class="secondary-btn hidden"
+                            id="cancelEdit">
+                            Cancel Edit
+                        </button>
+                    </div>
+
+                </form>
+
+
+                <div class="task-toolbar">
+
+                    <input type="search" id="searchTask"
+                        placeholder="🔍 Search your tasks...">
+
+                    <select id="filterCategory">
+                        <option value="All">All Categories</option>
+                        <option>Personal</option>
+                        <option>Study</option>
+                        <option>Work</option>
+                        <option>Health</option>
+                        <option>Shopping</option>
+                        <option>Other</option>
+                    </select>
+
+                </div>
+
+
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="All">All</button>
+                    <button class="filter-btn" data-filter="Pending">Pending</button>
+                    <button class="filter-btn" data-filter="Completed">Completed</button>
+                    <button class="filter-btn" data-filter="Important">⭐ Important</button>
+                </div>
+
+
+                <div id="taskContainer" class="task-container">
+                    <!-- Tasks appear here -->
+                </div>
+
+
+                <div class="progress-area">
+                    <div class="progress-heading">
+                        <span>Daily Progress</span>
+                        <strong id="progressPercent">0%</strong>
+                    </div>
+
+                    <div class="progress-track">
+                        <div id="progressBar"></div>
+                    </div>
+                </div>
+
+                <button class="reset-btn" id="resetListBtn">
+                    ↻ Reset Current List
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PLANNER PAGE -->
+
+        <section class="page" id="planner">
+
+            <div class="welcome-banner planner-banner">
+                <div>
+                    <span class="eyebrow">YOUR TIME MATTERS</span>
+                    <h2>Your Beautiful Planner 📅</h2>
+                    <p>Keep important days close to your heart.</p>
+                </div>
+                <div class="welcome-flower">🦋</div>
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="calendar-heading">
+                    <button id="prevMonth" class="icon-btn">❮</button>
+                    <h2 id="monthTitle">Month Year</h2>
+                    <button id="nextMonth" class="icon-btn">❯</button>
+                </div>
+
+                <div class="calendar-grid" id="calendarGrid">
+                </div>
+
+                <p class="calendar-note">
+                    🌸 Pink dates show your important tasks.
+                    Select any date to view its tasks.
+                </p>
+
+                <button id="clearDateFilter" class="secondary-btn">
+                    Show All Tasks
+                </button>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Upcoming Tasks ✨</h2>
+                        <p>Don't forget what's coming next.</p>
+                    </div>
+                </div>
+
+                <div id="upcomingTasks"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SETTINGS PAGE -->
+
+        <section class="page" id="settings">
+
+            <div class="welcome-banner">
+                <div>
+                    <span class="eyebrow">MAKE IT YOURS</span>
+                    <h2>Your Personal Settings ⚙️</h2>
+                    <p>Customize your little happy space.</p>
+                </div>
+                <div class="welcome-flower">🌺</div>
+            </div>
+
+
+            <div class="content-card settings-card">
+
+                <h2>🎨 Appearance</h2>
+                <p>Choose your favourite look.</p>
+
+                <div class="setting-row">
+                    <div>
+                        <strong>Light Mode</strong>
+                        <small>Soft and bright theme.</small>
+                    </div>
+                    <button class="secondary-btn" id="lightModeBtn">
+                        ☀️ Light Mode
+                    </button>
+                </div>
+
+                <div class="setting-row">
+                    <div>
+                        <strong>Dark Mode</strong>
+                        <small>Easy on your eyes.</small>
+                    </div>
+                    <button class="secondary-btn" id="darkModeBtn">
+                        🌙 Dark Mode
+                    </button>
+                </div>
+
+            </div>
+
+
+            <div class="content-card settings-card">
+
+                <h2>🔔 Notifications & Reminders</h2>
+                <p>Get notified when your tasks are due.</p>
+
+                <div class="setting-row">
+                    <div>
+                        <strong>Browser Notifications</strong>
+                        <small id="notificationStatus">Permission not requested.</small>
+                    </div>
+                    <button class="primary-btn" id="enableNotifications">
+                        Enable
+                    </button>
+                </div>
+
+                <div class="field">
+                    <label>Reminder Sound</label>
+                    <select id="soundSelect">
+                        <option value="bell">Soft Bell 🔔</option>
+                        <option value="chime">Sweet Chime ✨</option>
+                        <option value="gentle">Gentle Tone 🌸</option>
+                        <option value="none">No Sound 🔇</option>
+                    </select>
+                </div>
+
+                <button class="secondary-btn" id="testSound">
+                    ▶ Test Reminder Sound
+                </button>
+
+            </div>
+
+
+            <div class="content-card settings-card">
+
+                <h2>💾 Your Data</h2>
+                <p>Your tasks are saved in this browser.</p>
+
+                <div class="setting-row">
+                    <div>
+                        <strong>Download Backup</strong>
+                        <small>Save all your tasks as a JSON file.</small>
+                    </div>
+                    <button class="primary-btn" id="exportBtn">
+                        Download
+                    </button>
+                </div>
+
+                <div class="setting-row">
+                    <div>
+                        <strong>Import Backup</strong>
+                        <small>Restore tasks from a previous backup.</small>
+                    </div>
+                    <input type="file" id="importFile" accept=".json">
+                </div>
+
+                <div class="setting-row danger-row">
+                    <div>
+                        <strong>Delete All Data</strong>
+                        <small>Remove all saved tasks and lists.</small>
+                    </div>
+                    <button class="danger-btn" id="deleteAllBtn">
+                        Delete All
+                    </button>
+                </div>
+
+            </div>
+
+
+            <footer class="footer">
+                Made with love and little dreams 🌷
+                <br>
+                <strong>Petalora © 2026</strong>
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
